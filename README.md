@@ -1,2 +1,4 @@
-# Page-Replacement
-Algorithms of Page Replacement
+# OS Algorithms
+Algorithms of 
+1. Page Replacement
+2. Process Schedulling
