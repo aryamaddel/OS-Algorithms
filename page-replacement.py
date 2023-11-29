@@ -3,33 +3,6 @@ pages = [1, 2, 3, 4, 5, 1, 2, 5, 1, 2, 3, 4, 5, 1,
 
 frames = 4
 
-# Optimal
-print("\n\nOPTIMAL")
-optimal_faults = 0
-optimal_hits = 0
-optimal_pages = []
-
-for i in range(len(pages)):
-    if pages[i] not in optimal_pages:
-        if len(optimal_pages) < frames:
-            optimal_pages.append(pages[i])
-        else:
-            future_pages = pages[i+1:]
-            replaceable_pages = [
-                page for page in optimal_pages if page not in future_pages]
-            if replaceable_pages:
-                optimal_pages.remove(replaceable_pages[0])
-            else:
-                for page in optimal_pages:
-                    if page not in future_pages[frames:]:
-                        optimal_pages.remove(page)
-                        break
-            optimal_pages.append(pages[i])
-        optimal_faults += 1
-    else:
-        optimal_hits += 1
-        print(f'Hit at index {i} for page {pages[i]}')
-
 # FIFO
 print("\n\nFIFO")
 fifo_faults = 0
@@ -69,9 +42,7 @@ for i, page in enumerate(pages):
         print(f'Hit at index {i} for page {page}')
     recently_used.append(page)
 
-print("\n\nOptimal Page Faults: ", optimal_faults)
-print("Optimal Page Hits: ", optimal_hits)
-print("FIFO Page Faults: ", fifo_faults)
+print("\n\nFIFO Page Faults: ", fifo_faults)
 print("FIFO Page Hits: ", fifo_hits)
 print("LRU Page Faults: ", lru_faults)
 print("LRU Page Hits: ", lru_hits)
